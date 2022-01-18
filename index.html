@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>SS13 Tank Simulator</title>
+        <link rel="stylesheet" href="index.css">
+        <link rel="icon" href="res/tank.ico">
+    </head>
+
+    <body onload="onLoad();">
+        <span class="area">
+            <input type="submit" class="image-button singletank" value="Singletank"></input>
+            <br>
+            <input type="submit" class="image-button tanktransfer" value="todo"></input>
+            <br>
+            <input type="submit" class="image-button rcd" value="todo"></input>
+            <br>
+            <input type="submit" class="image-button rcd" value="todo"></input>
+        </span>
+
+        <span class="area main">
+            <h3>General</h3>
+            Tank type:
+            <select>
+                <option>Generic (70L)</option>
+                <option>todo</option>
+            </select>
+            <br>
+
+            Temperature (K):
+            <input type="number" min="0" value="293.15"></input>
+
+            <h3>Gasses</h3>
+            Add gas:
+            <select id="addgasfield" onchange="addToGastable();">
+                <option disabled selected hidden> Choose gas</option>
+                <option>Oxygen</option>
+                <option>todo</option>
+            </select>
+            <br>
+
+            <table id="gastable">
+                <tr>
+                    <th>Gas</th>
+                    <th>Moles</th>
+                    <th>Remove</th>
+                </tr>
+            </table>
+            
+            <input type="submit" value="Test"></input>
+        </span>
+        
+        <script src="index.js"></script>
+    </body>
+</html>

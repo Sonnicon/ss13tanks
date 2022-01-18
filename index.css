@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(168, 223, 255);
+    margin: 5px;
+    display: flex;
+    height: 99vh;
+}
+
+h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+table {
+    border-style:solid;
+    border-color: black;
+    margin-top: 4px;
+}
+
+table th {
+    border-style: solid;
+    border-color: black;
+    width: 100px;
+}
+
+.area {
+    background-color: white;
+    margin: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: fit-content;
+    float: left;
+}
+
+.area.main {
+    flex-grow: 1;
+    width: 100%;
+    padding: 4px;
+}
+
+input.image-button {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 36px;
+    height: 32px;
+    width: 100%;
+}
+
+input.image-button.singletank {
+    background: url('res/tank.ico') no-repeat center left;
+}
+
+input.image-button.tanktransfer {
+    background: url('res/tanktransfer.ico') no-repeat center left;
+}
+
+input.image-button.rcd {
+    background: url('res/rcd.ico') no-repeat center left;
+}
