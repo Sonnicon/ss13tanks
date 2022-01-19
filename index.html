@@ -21,21 +21,24 @@
         <span class="area main">
             <h3>General</h3>
             Tank type:
-            <select>
-                <option>Generic (70L)</option>
+            <select id=volumefield>
+                <option value=70>Generic (70L)</option>
                 <option>todo</option>
             </select>
             <br>
 
             Temperature (K):
-            <input type="number" min="0" value="293.15"></input>
+            <input type="number" min=0 value=293.15 id="tempfield"></input>
 
             <h3>Gasses</h3>
             Add gas:
             <select id="addgasfield" onchange="addToGastable();">
-                <option disabled selected hidden> Choose gas</option>
+                <option disabled selected hidden>Choose gas</option>
                 <option>Oxygen</option>
-                <option>todo</option>
+                <option>Plasma</option>
+                <option>Hydrogen</option>
+                <option>Tritium</option>
+                <option>Custom</option>
             </select>
             <br>
 
@@ -47,7 +50,10 @@
                 </tr>
             </table>
             
-            <input type="submit" value="Test"></input>
+            <input type="submit" value="Test" onclick="testGas();"></input>
+
+            <table id="temporary"></table>
+
         </span>
         
         <script src="index.js"></script>
