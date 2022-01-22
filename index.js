@@ -1,14 +1,5 @@
 var gastable, addgasfield, tempfield, volumefield;
 
-var gasHeatCapacities = {
-    "tritium": 10,
-    "hydrogen": 15,
-    "plasma": 200,
-    "oxygen": 20,
-    "carbon_dioxide": 30,
-    "water_vapor": 40
-}
-
 function onLoad() {
     gastable = document.getElementById("gastable");
     addgasfield = document.getElementById("addgasfield");
@@ -21,17 +12,19 @@ function addToGastable() {
     addgasfield.value = "Choose gas";
 
     if (selected == "Custom") {
-        var input = prompt("Enter heat capacity.");
-        if (input == null) {
+        selected = prompt("Enter name.");
+        if (selected == null) {
+            return;
+        } else if (selected in GASSES) {
+            alert("A gas with this name already exists.");
             return;
         }
-        input = parseInt(input);
-        if (isNaN(input)) {
+        var hcapacity = parseInt(prompt("Enter heat capacity."));
+        if (isNaN(hcapacity)) {
             alert("Not a valid number.");
             return;
         }
-        selected = "custom:" + input;
-        gasHeatCapacities[selected] = input
+        new Gas(selected, hcapacity, '#'+Math.random().toString(16).slice(-6))
     }
 
     if (document.getElementById("gastablemol-" + selected) == null) {
@@ -47,13 +40,15 @@ function addToGastable() {
 
 function removeFromGastable(name) {
     document.getElementById("gastable-" + name).outerHTML = "";
-    delete gasHeatCapacities[name];
+    if (!GASSES[name].blockDelete) {
+        delete GASSES[name];
+    }
 }
 
 function getGastable() {
     var result = {};
-    for (const [key, value] of Object.entries(gasHeatCapacities)) {
-        result[key] = 0;
+    for (const [key, value] of Object.entries(GASSES)) {
+        result[value.name] = 0;
     }
     for (let i = 1; i < gastable.rows.length; i++) {
         var cells = gastable.rows[i].cells;
@@ -269,7 +264,7 @@ function getTotalMoles(gasmix) {
 function getHeatCapacity(gasmix) {
     var sum = 0;
     for (const [key, value] of Object.entries(gasmix)) {
-        sum += gasHeatCapacities[key] * value;
+        sum += GASSES[key].heatCapacity * value;
     }
     return sum;
 }
