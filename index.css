@@ -37,6 +37,11 @@ table th {
     padding: 4px;
 }
 
+.chart-container {
+    width: 400px;
+    height: 200px;
+}
+
 input.image-button {
     margin-top: 4px;
     margin-bottom: 4px;

@@ -21,7 +21,7 @@
         <span class="area main">
             <h3>General</h3>
             Tank type:
-            <select id=volumefield>
+            <select id="volumefield">
                 <option value=70>Generic (70L)</option>
                 <option>todo</option>
             </select>
@@ -49,13 +49,18 @@
                     <th>Remove</th>
                 </tr>
             </table>
+            <br>
+
+            <div class="chartcontainer">
+                <canvas id="gastablechart" width=400 height=200></canvas>
+            </div>
             
             <input type="submit" value="Test" onclick="testGas();"></input>
 
             <table id="temporary"></table>
-
         </span>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
         <script src="js/gas.js"></script>
         <script src="index.js"></script>
     </body>

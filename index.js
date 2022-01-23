@@ -1,17 +1,41 @@
-var gastable, addgasfield, tempfield, volumefield;
+const gastable = document.getElementById("gastable");
+const addgasfield = document.getElementById("addgasfield");
+const tempfield = document.getElementById("tempfield");
+const volumefield = document.getElementById("volumefield");
+const gastablechart = document.getElementById("gastablechart");
+var gastablechartChart;
 
 function onLoad() {
-    gastable = document.getElementById("gastable");
-    addgasfield = document.getElementById("addgasfield");
-    tempfield = document.getElementById("tempfield");
-    volumefield = document.getElementById("volumefield");
+    gastablechartChart = new Chart(gastablechart, {
+        type: 'doughnut',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Gas mix',
+                data: [],
+                backgroundColor: []
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { 
+                    position: "right",
+                    align: "start"
+                }
+            }
+
+        }
+    });
 }
 
 function addToGastable() {
-    var selected = addgasfield.value;
+    var selected = addgasfield.value.toLowerCase();
     addgasfield.value = "Choose gas";
+    var gas;
 
-    if (selected == "Custom") {
+    if (selected == "custom") {
         selected = prompt("Enter name.");
         if (selected == null) {
             return;
@@ -24,18 +48,31 @@ function addToGastable() {
             alert("Not a valid number.");
             return;
         }
-        new Gas(selected, hcapacity, '#'+Math.random().toString(16).slice(-6))
+        gas = new Gas(selected, hcapacity, '#'+Math.random().toString(16).slice(-6))
+    } else {
+        gas = GASSES[selected];
     }
 
     if (document.getElementById("gastablemol-" + selected) == null) {
         gastable.insertAdjacentHTML('beforeend', `<tr id="gastable-` + selected + `">
         <td>` + selected + `</td>
-        <td><input type="number" min="0" value="0" id="gastablemol-` + selected + `"></input></td>
+        <td><input type="number" min="0" value="0" id="gastablemol-` + selected + `" onchange="editGastable('` + selected + `')"></input></td>
         <td><input type="submit" value="Remove" onclick="removeFromGastable('` + selected + `');"></input></td></tr>`);
     } else {
         alert("Gas already added to list.");
     }
-    
+
+    gastablechartChart.data.labels.push(selected);
+    var dataset = gastablechartChart.data.datasets[0];
+    dataset.data.push(0)
+    dataset.backgroundColor.push(gas.color)
+    gastablechartChart.update();
+}
+
+function editGastable(name) {
+    var index = gastablechartChart.data.labels.indexOf(name);
+    gastablechartChart.data.datasets[0].data[index] = document.getElementById("gastablemol-" + name).value;
+    gastablechartChart.update();
 }
 
 function removeFromGastable(name) {
@@ -43,6 +80,12 @@ function removeFromGastable(name) {
     if (!GASSES[name].blockDelete) {
         delete GASSES[name];
     }
+    var index = gastablechartChart.data.labels.indexOf(name);
+    var dataset = gastablechartChart.data.datasets[0];
+    gastablechartChart.data.labels.splice(index, 1);
+    dataset.data.splice(index, 1)
+    dataset.backgroundColor.splice(index, 1)
+    gastablechartChart.update()
 }
 
 function getGastable() {
