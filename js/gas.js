@@ -8,7 +8,7 @@ class Gas {
         this.name = name;
         this.heatCapacity = heatCapacity;
         this.color = color;
-        this.stopDelete = false;
+        this.stopDelete = stopDelete;
         GASSES[name] = this;
     }
 }

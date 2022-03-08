@@ -77,7 +77,7 @@ function editGastable(name) {
 
 function removeFromGastable(name) {
     document.getElementById("gastable-" + name).outerHTML = "";
-    if (!GASSES[name].blockDelete) {
+    if (!GASSES[name].stopDelete) {
         delete GASSES[name];
     }
     var index = gastablechartChart.data.labels.indexOf(name);

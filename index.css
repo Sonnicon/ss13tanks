@@ -1,8 +1,10 @@
 body {
     background-color: rgb(168, 223, 255);
-    margin: 5px;
-    display: flex;
-    height: 99vh;
+    display:flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
 }
 
 h3 {
@@ -13,28 +15,37 @@ h3 {
 table {
     border-style:solid;
     border-color: black;
-    margin-top: 4px;
 }
 
 table th {
     border-style: solid;
     border-color: black;
-    width: 100px;
+}
+
+.borderpad {
+    border: 4px solid transparent;
+}
+
+.region {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
 }
 
 .area {
     background-color: white;
-    margin: 5px;
-    padding-left: 4px;
-    padding-right: 4px;
-    width: fit-content;
-    float: left;
 }
 
-.area.main {
-    flex-grow: 1;
-    width: 100%;
-    padding: 4px;
+.area.sidebar {
+    height: 100%;
+}
+
+.area.input {
+    margin-bottom: 4px;
+}
+
+.area.result {
+    flex: 1;
 }
 
 .chart-container {

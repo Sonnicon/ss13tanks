@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>SS13 Tank Simulator</title>
         <link rel="stylesheet" href="index.css">
@@ -8,56 +7,69 @@
     </head>
 
     <body onload="onLoad();">
-        <span class="area">
-            <input type="submit" class="image-button singletank" value="Singletank"></input>
-            <br>
-            <input type="submit" class="image-button tanktransfer" value="todo"></input>
-            <br>
-            <input type="submit" class="image-button rcd" value="todo"></input>
-            <br>
-            <input type="submit" class="image-button rcd" value="todo"></input>
+        <span class="borderpad">
+            <div class="area sidebar">
+                <div class="borderpad">
+                    <input type="submit" class="image-button singletank" value="Singletank"></input>
+                    <br>
+                    <input type="submit" class="image-button tanktransfer" value="todo"></input>
+                    <br>
+                    <input type="submit" class="image-button rcd" value="todo"></input>
+                    <br>
+                    <input type="submit" class="image-button rcd" value="todo"></input>
+                </div>
+            </div>
         </span>
 
-        <span class="area main">
-            <h3>General</h3>
-            Tank type:
-            <select id="volumefield">
-                <option value=70>Generic (70L)</option>
-                <option>todo</option>
-            </select>
-            <br>
+        <span class="region borderpad">
+                <div class="area input">
+                    <div class="borderpad">
+                        <h3>General</h3>
+                        Tank type:
+                        <select id="volumefield">
+                            <option value=70>Generic (70L)</option>
+                            <option>todo</option>
+                        </select>
+                        <br>
 
-            Temperature (K):
-            <input type="number" min=0 value=293.15 id="tempfield"></input>
+                        Temperature (K):
+                        <input type="number" min=0 value=293.15 id="tempfield"></input>
 
-            <h3>Gasses</h3>
-            Add gas:
-            <select id="addgasfield" onchange="addToGastable();">
-                <option disabled selected hidden>Choose gas</option>
-                <option>Oxygen</option>
-                <option>Plasma</option>
-                <option>Hydrogen</option>
-                <option>Tritium</option>
-                <option>Custom</option>
-            </select>
-            <br>
+                        <h3>Gasses</h3>
+                        Add gas:
+                        <select id="addgasfield" onchange="addToGastable();">
+                            <option disabled selected hidden>Choose gas</option>
+                            <option>Oxygen</option>
+                            <option>Plasma</option>
+                            <option>Hydrogen</option>
+                            <option>Tritium</option>
+                            <option>Custom</option>
+                        </select>
+                        <br>
 
-            <table id="gastable">
-                <tr>
-                    <th>Gas</th>
-                    <th>Moles</th>
-                    <th>Remove</th>
-                </tr>
-            </table>
-            <br>
+                        <table id="gastable">
+                            <tr>
+                                <th>Gas</th>
+                                <th>Moles</th>
+                                <th>Remove</th>
+                            </tr>
+                        </table>
+                        <br>
 
-            <div class="chartcontainer">
-                <canvas id="gastablechart" width=400 height=200></canvas>
-            </div>
-            
-            <input type="submit" value="Test" onclick="testGas();"></input>
+                        <div class="chartcontainer">
+                            <canvas id="gastablechart" width=400 height=200></canvas>
+                        </div>
+                        
+                        <input type="submit" value="Test" onclick="testGas();"></input>
 
-            <table id="temporary"></table>
+                    </div>
+                </div>
+
+                <div class="area result">
+                    <div class="borderpad">
+                        <table id="temporary"></table>
+                    </div>
+                </div>
         </span>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
